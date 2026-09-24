@@ -1,0 +1,10 @@
+[project]
+name = "ccusr-delivery-wave"
+version = "0.1.0"
+description = "门店需求、车辆、波次、周转箱与扫描事件的领域资料"
+requires-python = ">=3.11"
+dependencies = []
+
+[tool.unittest]
+start-directory = "tests"
+

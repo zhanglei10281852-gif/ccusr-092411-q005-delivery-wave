@@ -1,0 +1,30 @@
+{
+  "project": "门店配送波次中枢",
+  "entities": [
+    "store_order",
+    "vehicle",
+    "wave",
+    "container",
+    "scan_event"
+  ],
+  "states": [
+    "collecting",
+    "cutoff",
+    "loading",
+    "sealed",
+    "transferred",
+    "delivered",
+    "returned"
+  ],
+  "event_types": [
+    "order.received",
+    "wave.cutoff",
+    "container.loaded",
+    "vehicle.sealed",
+    "store.signed"
+  ],
+  "time_policy": "ISO 8601 with timezone",
+  "identifier_policy": "业务标识在同一类型内唯一",
+  "version_policy": "发布后的规则以新版本追加"
+}
+
