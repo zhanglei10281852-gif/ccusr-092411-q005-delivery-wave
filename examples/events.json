@@ -16,5 +16,23 @@
     "event_type": "container.loaded",
     "aggregate_id": "box-001",
     "occurred_at": "2026-09-23T10:00:00+08:00"
+  },
+  {
+    "event_id": "evt-004",
+    "event_type": "vehicle.sealed",
+    "aggregate_id": "route-AM-01",
+    "occurred_at": "2026-09-23T11:00:00+08:00"
+  },
+  {
+    "event_id": "evt-005",
+    "event_type": "store.signed",
+    "aggregate_id": "route-AM-01:store-080",
+    "occurred_at": "2026-09-23T14:00:00+08:00"
+  },
+  {
+    "event_id": "evt-006",
+    "event_type": "container.recovered",
+    "aggregate_id": "box-001",
+    "occurred_at": "2026-09-23T15:00:00+08:00"
   }
 ]
