@@ -7,14 +7,62 @@
   },
   {
     "event_id": "evt-002",
-    "event_type": "wave.cutoff",
-    "aggregate_id": "wave-AM-01",
-    "occurred_at": "2026-09-22T09:00:00+08:00"
+    "event_type": "return.task_received",
+    "aggregate_id": "ret:A:S99:5",
+    "occurred_at": "2026-09-21T08:05:00+08:00"
   },
   {
     "event_id": "evt-003",
+    "event_type": "wave.planned",
+    "aggregate_id": "wave-A-01",
+    "occurred_at": "2026-09-22T07:00:00+08:00"
+  },
+  {
+    "event_id": "evt-004",
+    "event_type": "wave.cutoff",
+    "aggregate_id": "wave-A-01",
+    "occurred_at": "2026-09-22T07:30:00+08:00"
+  },
+  {
+    "event_id": "evt-005",
+    "event_type": "driver.assigned",
+    "aggregate_id": "wave-A-01",
+    "occurred_at": "2026-09-22T07:40:00+08:00"
+  },
+  {
+    "event_id": "evt-006",
     "event_type": "container.loaded",
     "aggregate_id": "box-001",
-    "occurred_at": "2026-09-23T10:00:00+08:00"
+    "occurred_at": "2026-09-22T07:50:00+08:00"
+  },
+  {
+    "event_id": "evt-007",
+    "event_type": "vehicle.sealed",
+    "aggregate_id": "wave-A-01",
+    "occurred_at": "2026-09-22T08:20:00+08:00"
+  },
+  {
+    "event_id": "evt-008",
+    "event_type": "vehicle.breakdown_reported",
+    "aggregate_id": "veh-12",
+    "occurred_at": "2026-09-22T09:00:00+08:00"
+  },
+  {
+    "event_id": "evt-009",
+    "event_type": "vehicle.reassigned",
+    "aggregate_id": "wave-A-01",
+    "occurred_at": "2026-09-22T09:45:00+08:00"
+  },
+  {
+    "event_id": "evt-010",
+    "event_type": "store.signed",
+    "aggregate_id": "box-001",
+    "occurred_at": "2026-09-22T10:10:00+08:00"
+  },
+  {
+    "event_id": "evt-011",
+    "event_type": "container.returned",
+    "aggregate_id": "box-001",
+    "occurred_at": "2026-09-22T11:00:00+08:00"
   }
 ]

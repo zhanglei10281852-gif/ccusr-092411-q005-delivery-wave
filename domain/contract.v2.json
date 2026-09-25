@@ -1,0 +1,91 @@
+{
+  "version": 2,
+  "supersedes": 1,
+  "project": "门店配送波次中枢",
+  "entities": [
+    "store_order",
+    "vehicle",
+    "wave",
+    "container",
+    "scan_event",
+    "adjustment",
+    "delivery_manifest",
+    "custody_record"
+  ],
+  "states": [
+    "collecting",
+    "cutoff",
+    "loading",
+    "sealed",
+    "transferred",
+    "delivered",
+    "returned"
+  ],
+  "container_states": [
+    "registered",
+    "planned",
+    "loaded",
+    "unloaded",
+    "sealed",
+    "signed",
+    "collected",
+    "returned"
+  ],
+  "event_types": [
+    "order.received",
+    "order.merged",
+    "order.split",
+    "return.task_received",
+    "vehicle.registered",
+    "vehicle.breakdown_reported",
+    "container.registered",
+    "wave.planned",
+    "wave.cutoff",
+    "adjustment.requested",
+    "adjustment.approved",
+    "adjustment.rejected",
+    "adjustment.applied",
+    "driver.assigned",
+    "container.loaded",
+    "container.unloaded",
+    "vehicle.sealed",
+    "vehicle.reassigned",
+    "delivery.shortage",
+    "delivery.delayed",
+    "store.signed",
+    "container.returned"
+  ],
+  "reason_codes": {
+    "shortage": [
+      "SUPPLY_SHORT",
+      "NOT_LOADED",
+      "REMOVED_BY_ADJUSTMENT"
+    ],
+    "split": [
+      "CAPACITY_LIMIT",
+      "ZONE_LIMIT",
+      "COLOADING_CONFLICT",
+      "WINDOW_LIMIT",
+      "ROUTE_DURATION"
+    ],
+    "delay": [
+      "VEHICLE_BREAKDOWN",
+      "REASSIGNMENT",
+      "WAVE_REPLAN"
+    ]
+  },
+  "rules": {
+    "wave_planning": "装车波次由门店收货窗口、车辆载重与温层、商品共载限制、线路时长、箱筐回收任务共同决定，任一违反即不得编排",
+    "cutoff": "截单前允许合并需求；截单后仅持已批准差异单可变更，且只能触及尚未封签的部分",
+    "delivery_version": "司机领单、仓库装箱、车辆封签、门店签收沿同一 delivery_version 推进，版本不一致的交接一律拒绝",
+    "offline_scan": "扫描补传以 occurred_at 业务发生时间校验状态，recorded_at 仅记录上传时间",
+    "idempotency": "同一 scan_id 重复上传为幂等；同一容器重复装车或重复签收不得产生第二遍效果",
+    "concurrent_seal": "同一波次并发封签只允许一个成功，以数据库唯一约束兜底",
+    "reassignment": "车辆故障允许整车转派，转派车辆必须重新满足载重、温层与共载限制；已交接容器保留逐件交接链",
+    "store_visibility": "门店查询必须给出缺货、拆单、延迟的具体原因码与涉及的波次/容器",
+    "recovery": "所有事实以事件持久化，进程恢复后重放事件，待转派车辆与未回收容器仍处于正确环节"
+  },
+  "time_policy": "ISO 8601 with timezone",
+  "identifier_policy": "业务标识在同一类型内唯一",
+  "version_policy": "发布后的规则以新版本追加，不得删除旧版本声明"
+}

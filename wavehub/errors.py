@@ -1,0 +1,55 @@
+"""统一的错误类型与原因码。
+
+门店侧的缺货/拆单/延迟原因码与 domain/contract.v2.json 保持一致。
+"""
+from __future__ import annotations
+
+
+class BusinessRuleError(Exception):
+    """所有可预期的业务拒绝都继承该类型，携带稳定原因码。"""
+
+    def __init__(self, reason: str, message: str, **context: object) -> None:
+        super().__init__(message)
+        self.reason = reason
+        self.context = context
+
+
+class PlanningError(BusinessRuleError):
+    """编排阶段无解（温层/载重/共载/窗口/时长）。"""
+
+
+# 交接与扫描
+VERSION_MISMATCH = "VERSION_MISMATCH"
+CONTAINER_ROUTE_MISMATCH = "CONTAINER_ROUTE_MISMATCH"
+SCAN_OUT_OF_ORDER = "SCAN_OUT_OF_ORDER"
+DUPLICATE_SCAN = "DUPLICATE_SCAN"
+ALREADY_SEALED = "ALREADY_SEALED"
+CONCURRENT_SEAL = "CONCURRENT_SEAL"
+
+# 截单与差异单
+WAVE_CLOSED = "WAVE_CLOSED"
+ADJUSTMENT_NOT_APPROVED = "ADJUSTMENT_NOT_APPROVED"
+ADJUSTMENT_TARGET_SEALED = "ADJUSTMENT_TARGET_SEALED"
+
+# 转派
+VEHICLE_NOT_BROKEN = "VEHICLE_NOT_BROKEN"
+REASSIGNMENT_CONSTRAINT_FAILED = "REASSIGNMENT_CONSTRAINT_FAILED"
+NOTHING_TO_REASSIGN = "NOTHING_TO_REASSIGN"
+
+# 编排
+NO_ELIGIBLE_VEHICLE = "NO_ELIGIBLE_VEHICLE"
+
+# 缺货 / 拆单 / 延迟（对门店可见）
+SUPPLY_SHORT = "SUPPLY_SHORT"
+NOT_LOADED = "NOT_LOADED"
+REMOVED_BY_ADJUSTMENT = "REMOVED_BY_ADJUSTMENT"
+
+CAPACITY_LIMIT = "CAPACITY_LIMIT"
+ZONE_LIMIT = "ZONE_LIMIT"
+COLOADING_CONFLICT = "COLOADING_CONFLICT"
+WINDOW_LIMIT = "WINDOW_LIMIT"
+ROUTE_DURATION = "ROUTE_DURATION"
+
+VEHICLE_BREAKDOWN = "VEHICLE_BREAKDOWN"
+REASSIGNMENT = "REASSIGNMENT"
+WAVE_REPLAN = "WAVE_REPLAN"
